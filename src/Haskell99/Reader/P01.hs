@@ -3,6 +3,8 @@ module Haskell99.P01
     ) where
 
 import Control.Monad.Reader
+import Control.Monad.Trans.Maybe
+import Control.Monad.Identity
 
 
 --basic example , crashes on empty lists
@@ -39,4 +41,35 @@ p01_4 :: [a] -> Maybe a
 p01_4 ls = runReader readerFunction ls
   where
     readerFunction :: Reader [a] (Maybe a)
-    readerFunction = ask >>= return . (\list -> if null list then Nothing else Just $ last list)  
+    readerFunction = ask >>= return . (\list -> if null list then Nothing else Just $ last list)
+
+
+--using local
+p01_5 :: [a] -> a
+p01_5 = runReader readerFunction
+  where
+    readerFunction ::  Reader [a] a
+    readerFunction  = local reverse ( ask >>= return . head )
+
+
+p01_6 :: [a] -> a
+p01_6 = runReader (withReader reverse readerFunction)
+  where
+    readerFunction ::  Reader [a] a
+    readerFunction  = ask >>= return . head
+
+
+
+p01_7 :: [a] -> a
+p01_7 = runReader readerFunction
+  where
+    readerFunction ::  Reader [a] a
+    readerFunction  =  reader (head . reverse)
+
+
+p01_8 :: [a] -> Maybe a
+p01_8  = runIdentity .  runMaybeT readerFunction
+  where
+    readerFunction ::  (MaybeT Identity [a])
+    readerFunction = do
+      
