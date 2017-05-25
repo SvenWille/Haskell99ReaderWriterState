@@ -1,10 +1,9 @@
-module Haskell99.P01
+module Haskell99.Reader.P01
     (
     ) where
 
 import Control.Monad.Reader
 import Control.Monad.Trans.Maybe
-import Control.Monad.Identity
 
 
 --basic example , crashes on empty lists
@@ -68,8 +67,21 @@ p01_7 = runReader readerFunction
 
 
 p01_8 :: [a] -> Maybe a
-p01_8  = runIdentity .  runMaybeT readerFunction
+p01_8  = runReader (runMaybeT readerFunction)
   where
-    readerFunction ::  (MaybeT Identity [a])
+    readerFunction ::  (MaybeT (Reader [a] ) a)
     readerFunction = do
-      
+      val <- lift ask
+      return $ last val
+
+p01_9 :: [a] -> a
+p01_9  = runReader readerFunction
+  where
+    readerFunction :: Reader [a] a
+    readerFunction = asks last
+
+{-
+p01_10 :: [a] -> a
+p01_10 = runReader readerFunction
+  where
+  -}

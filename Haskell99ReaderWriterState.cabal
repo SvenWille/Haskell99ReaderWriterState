@@ -2,7 +2,7 @@ name:                Haskell99ReaderWriterState
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/githubuser/Haskell99ReaderWriterState#readme
+homepage:            https://github.com/SvenWille/Haskell99ReaderWriterState#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Sven Wille
@@ -34,4 +34,4 @@ test-suite Haskell99ReaderWriterState-test
 
 source-repository head
   type:     git
-  location: https://github.com/githubuser/Haskell99ReaderWriterState
+  location: https://github.com/SvenWille/Haskell99ReaderWriterState
