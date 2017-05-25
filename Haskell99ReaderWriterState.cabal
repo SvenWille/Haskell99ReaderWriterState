@@ -2,12 +2,12 @@ name:                Haskell99ReaderWriterState
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/githubuser/Haskell99ReaderWriterState#readme
+homepage:            https://github.com/SvenWille/Haskell99ReaderWriterState#readme
 license:             BSD3
 license-file:        LICENSE
-author:              Author name here
+author:              Sven Wille
 maintainer:          example@example.com
-copyright:           2017 Sven Wille, [Placeholder]
+copyright:           2017 Sven Wille
 category:            Web
 build-type:          Simple
 extra-source-files:  README.md
@@ -16,8 +16,11 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src
   exposed-modules:     Lib,
+                       Haskell99.Reader.P01,
                        Haskell99.State.P01
-  build-depends:       base >= 4.7 && < 5
+  build-depends:       base >= 4.7 && < 5,
+                       mtl,
+                       transformers
   default-language:    Haskell2010
 
 test-suite Haskell99ReaderWriterState-test
@@ -31,4 +34,4 @@ test-suite Haskell99ReaderWriterState-test
 
 source-repository head
   type:     git
-  location: https://github.com/githubuser/Haskell99ReaderWriterState
+  location: https://github.com/SvenWille/Haskell99ReaderWriterState
